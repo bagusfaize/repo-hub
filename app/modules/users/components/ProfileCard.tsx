@@ -1,0 +1,49 @@
+import Image from "next/image";
+import Link from "next/link";
+import { FaGithub } from 'react-icons/fa'
+import { IGithubUser } from "@/app/types/types";
+
+interface ProfileCardProps {
+    user: IGithubUser,
+    showButton?: boolean,
+}
+
+export default function ProfileCard({ 
+    user,
+    showButton = true
+}: ProfileCardProps) {
+
+    return (
+        <div className={`bg-white p-5 flex justify-between rounded-md shadow-sm cursor-pointer`}>
+            <div className="flex">
+                <div className="rounded-lg h-11 w-11 overflow-hidden mr-5">
+                    <Image
+                        width={300}
+                        height={300}
+                        src={user.avatar_url}
+                        alt="Profile"
+                        className="object-cover object-center h-full w-full"
+                    />
+                </div>
+                <div className="flex flex-col justify-between">
+                    <div className="capitalize">
+                        <span>{user.login}</span>
+                    </div>
+                    <Link href={user.html_url || "https://github.com/"} className="flex items-center text-gray-500" target="_blank">
+                        <FaGithub className="mr-1 text-sm" />
+                        <span className="text-xs">Github Profile</span>
+                    </Link>
+                </div>
+            </div>
+            {showButton && (
+                <div className="w-12 sm:w-32 py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-black text-white hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 text-xs">
+                    <div className="flex items-center">
+                        <Link href={`/profile/${user.login}`} className="flex items-center">
+                            Open Profile
+                        </Link>
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+}

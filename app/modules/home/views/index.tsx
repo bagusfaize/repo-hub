@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";

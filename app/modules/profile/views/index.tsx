@@ -8,7 +8,7 @@ import { getRepoReadme, getUserDetail, getUserRepo } from "@/app/services/github
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation"
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import ReactMarkdown from "react-markdown";
 import { IGithubUser, IRepo } from "@/app/types/types";
@@ -69,7 +69,9 @@ export default function ProfileView() {
                 <Link href="/">
                     <Logo />
                 </Link>
-                <SearchBar />
+                <Suspense>
+                    <SearchBar />
+                </Suspense>
             </div>
             <div className="grid grid-cols-1 gap-5 w-full md:w-2/3">
                 <div className="grid grid-cols-12 gap-4">

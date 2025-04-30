@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
+import { Suspense } from "react";
 
 export default function HomeView() {
   return (
@@ -15,7 +16,9 @@ export default function HomeView() {
             Explore Github Users and Repositories
           </h1>
           <div className="w-full">
-            <SearchBar />
+            <Suspense>
+                <SearchBar />
+            </Suspense>
           </div>
         </div>
       </div>

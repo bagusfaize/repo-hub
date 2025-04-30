@@ -7,7 +7,7 @@ import Logo from "../modules/home/components/Logo";
 import { useQuery } from "@tanstack/react-query";
 import { searchUsers } from "../services/github";
 import ProfileCard from "../modules/users/components/ProfileCard";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import EmptyUserState from "../modules/users/components/EmptyUserState";
 import ProfileSkeleton from "../modules/users/components/ProfileSkeleton";
 import { IGithubUser } from "../types/types";
@@ -39,7 +39,9 @@ export default function SearchResultPage() {
                 <Link href="/">
                     <Logo />
                 </Link>
-                <SearchBar />
+                <Suspense>
+                    <SearchBar />
+                </Suspense>
             </div>
             <div className="grid grid-cols-1 gap-5 w-full md:w-2/3">
                 <h1 className="font-semibold my-2">Showing result for <span className="italic">{`"${username}"`}</span></h1>

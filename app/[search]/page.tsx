@@ -10,6 +10,7 @@ import ProfileCard from "../modules/users/components/ProfileCard";
 import { useEffect } from "react";
 import EmptyUserState from "../modules/users/components/EmptyUserState";
 import ProfileSkeleton from "../modules/users/components/ProfileSkeleton";
+import { IGithubUser } from "../types/types";
 
 export default function SearchResultPage() {
     const searchParams = useSearchParams();
@@ -19,7 +20,7 @@ export default function SearchResultPage() {
         data: users = [],
         isLoading,
         refetch,
-    } = useQuery({
+    } = useQuery<IGithubUser[]>({
         queryKey: ["users", username],
         queryFn: () => searchUsers({ q: username, page: 1, per_page: 5 })
     });
@@ -31,8 +32,6 @@ export default function SearchResultPage() {
     }, [username, refetch]);
 
     const isUsersEmpty = !isLoading && !users.length;
-
-    console.log('clg users', users);
 
     return (
         <div className="flex flex-col items-center px-4 sm:px-10 pb-10 min-h-screen">
@@ -52,8 +51,8 @@ export default function SearchResultPage() {
                         />
                     )
                     )}
-                {isLoading && [...Array(5)].map((v, i) => (<ProfileSkeleton key={`profileskeleton-${i}`} />))}
-                {isUsersEmpty && <EmptyUserState />}
+                    {isLoading && [...Array(5)].map((v, i) => (<ProfileSkeleton key={`profileskeleton-${i}`} />))}
+                    {isUsersEmpty && <EmptyUserState />}
                 </div>
             </div>
         </div>

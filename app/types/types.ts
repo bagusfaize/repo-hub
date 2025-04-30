@@ -6,10 +6,9 @@ export interface IGithubUser {
     html_url?: string,
 }
 
-export interface IRepoCard {
+export interface IRepo {
     id?: number,
     name: string,
     description: string,
     stargazers_count: number,
-    onClick: () => void,
   }

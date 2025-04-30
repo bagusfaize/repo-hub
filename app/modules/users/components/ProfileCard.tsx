@@ -38,7 +38,7 @@ export default function ProfileCard({
             {showButton && (
                 <div className="w-12 sm:w-32 py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-black text-white hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 text-xs">
                     <div className="flex items-center">
-                        <Link href={`/profile/${user.login}`} className="flex items-center">
+                        <Link href={`/profile/${user.login}`}>
                             Open Profile
                         </Link>
                     </div>
